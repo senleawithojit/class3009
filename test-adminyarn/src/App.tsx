@@ -7,21 +7,13 @@ import {
 } from "react-admin";
 import { Layout } from "./Layout";
 import { dataProvider } from "./dataProvider";
+import jsonServerProvider from "ra-data-json-server";
+
+export const dataProvider = jsonServerProvider(import.meta.env.VITE_JSON_SERVER_URL);
 
 export const App = () => (
-  <Admin layout={Layout} dataProvider={dataProvider}>
-    <Resource
-      name="posts"
-      list={ListGuesser}
-      edit={EditGuesser}
-      show={ShowGuesser}
-    />
-    <Resource
-      name="comments"
-      list={ListGuesser}
-      edit={EditGuesser}
-      show={ShowGuesser}
-    />
+  <Admin dataProvider={dataProvider}>
++   <Resource name="users" list={ListGuesser} />
   </Admin>
 );
 
